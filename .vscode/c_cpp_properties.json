@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:\\Users\\Alfie\\AppData\\Local\\Arduino15\\packages\\esp8266\\tools\\**",
+                "C:\\Users\\Alfie\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\**",
+                "C:\\Users\\ashle\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\**",
+                "C:\\Users\\ashle\\AppData\\Local\\Arduino15\\packages\\esp8266\\tools\\**"
+            ],
+            "forcedInclude": [],
+            "intelliSenseMode": "msvc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}

